@@ -12,10 +12,6 @@ function BucketForm(props) {
 
     if (!eagerness) {
       eagerness = 'low';
-    } else if (eagerness === 'medium') {
-      setEagerness(eagernessLevel, 'medium');
-    } else {
-      setEagerness('high');;
     }
 
     props.onSubmit({
