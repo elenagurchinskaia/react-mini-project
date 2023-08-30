@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function BucketForm(props) {
   const [input, setInput] = useState('');
-  let [eagerness, setEagerness] = useState('');
+  let [eagerness, setEagerness] = useState(''); // inital blank state for priority
 
   // TODO: Use this array in the return statement below
   const eagernessLevel = ['high', 'medium', 'low']
@@ -12,6 +12,10 @@ function BucketForm(props) {
 
     if (!eagerness) {
       eagerness = 'low';
+    } else if (eagerness === 'medium') {
+      setEagerness(eagernessLevel, 'medium');
+    } else {
+      setEagerness('high');;
     }
 
     props.onSubmit({
@@ -27,6 +31,10 @@ function BucketForm(props) {
   const handleChange = (e) => {
     setInput(e.target.value);
   };
+
+  // const handlePriorityClick = (level) => {
+  //   setEagerness(level);
+  // }
 
   // First we check to see if "edit" prop exists. If not, we render the normal form
   // If the prop "edit" exists, we know to render the update form instead
@@ -47,9 +55,9 @@ function BucketForm(props) {
           </button>
           <div className="dropdown-content">
             {/* TODO: Add an onClick event that will set the corresponding eagerness level from the `eagernessLevel` array */}
-            <p onClick={}>Must do</p>
-            <p onClick={}>Want to do</p>
-            <p onClick={}>Take it or leave it</p>
+            <p onClick={setEagerness('high')}>Must do</p>
+            <p onClick={setEagerness('medium')}>Want to do</p>
+            <p onClick={setEagerness('low')}>Take it or leave it</p>
           </div>
         </div>
         <button className="bucket-button">Add bucket list item</button>
@@ -73,9 +81,9 @@ function BucketForm(props) {
           </button>
           <div className="dropdown-content">
             {/* TODO: Add an onClick event that will set the corresponding eagerness level from the `eagernessLevel` array */}
-            <p onClick={}>Must do</p>
-            <p onClick={}>Want to do</p>
-            <p onClick={}>Take it or leave it</p>
+            <p onClick={setEagerness('high')}>Must do</p>
+            <p onClick={setEagerness('medium')}>Want to do</p>
+            <p onClick={setEagerness('low')}>Take it or leave it</p>
           </div>
         </div>
         <button className="bucket-button">Update</button>
